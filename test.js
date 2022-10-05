@@ -14,35 +14,34 @@ function pickRandomWinner() {
 function singleGame() {
     let x = pickRandomWinner();
     if (x === 0) {
-        alert('Even Game');
-        numberRounds += 1;
-        console.log(numberRounds)
-        roundText.textContent = `Number of Rounds: ${numberRounds}`;
+        //alert('Even round');
+        ++numberRounds;
     }
     else if (x === 1) {
-        alert('You win!');
-        myScore += 1;
-        numberRounds += 1;
-        console.log(numberRounds)
-        roundText.textContent = `Number of Rounds: ${numberRounds}`;
-        scoreMe.textContent = `My Score: ${myScore}`;
-        scorePc.textContent = `Computer Score: ${pcScore}`;
+        //alert('You win this round!');
+        ++myScore;
+        ++numberRounds;
     }
-    else if (x === 2) {
-        alert('Computer wins!');
-        pcScore += 1;
-        numberRounds += 1;
-        console.log(numberRounds)
-        roundText.textContent = `Number of Rounds: ${numberRounds}`;
-        scoreMe.textContent = `My Score: ${myScore}`;
-        scorePc.textContent = `Computer Score: ${pcScore}`;
+    else {
+        //alert('Computer wins this round!');
+        ++pcScore;
+        ++numberRounds;
         }
+    roundText.textContent = `Number of Rounds: ${numberRounds}`;
+    scoreMe.textContent = `My Score: ${myScore}`;
+    scorePc.textContent = `Computer Score: ${pcScore}`;
+    if (myScore === 5 || pcScore === 5) {
+        gameOver()};
 }
+
 
 gameButton.addEventListener('click', () => {singleGame()})
 
-
-
-roundText.textContent = `Number of Rounds: ${numberRounds}`;
-myScore.textContent = `${myScore}`;
-pcScore.textContent = `${pcScore}`;
+function gameOver() {
+    if (myScore > pcScore) {
+        alert('You won!');
+    }
+    else {
+        alert('The computer won!');
+    }
+}
